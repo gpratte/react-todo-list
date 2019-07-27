@@ -1,0 +1,21 @@
+
+body{
+    margin: 10px;
+}
+h1 {
+    display: inline;
+}
+ul {
+    padding: 0px;
+}
+li {
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+.header-item {
+    float: right;
+}
+.done {
+    margin-right: 10px;
+}
+

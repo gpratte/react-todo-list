@@ -40,3 +40,6 @@ Create the first branch
 * _git checkout -b step-01-create-development-environment_
 * _git push origin step-01-create-development-environment_
 
+## step 02 UI markup
+Created an artifacts/mockup directory. In that directory create an 
+html and css file for how the web page will look.
