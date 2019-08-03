@@ -43,3 +43,8 @@ Create the first branch
 ## step 02 UI markup
 Created an artifacts/mockup directory. In that directory create an 
 html and css file for how the web page will look.
+
+## step 03 render html
+Render the same html as the mockup in the react application.
+
+The Reminder component does not have any smarts and always renders "buy milk".

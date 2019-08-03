@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Reminder from './Reminder';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className={"header"}>
+          <h1>Reminders</h1>
+          <button className="header-item">New Reminder</button>
+          <button className="header-item">Hide Done</button>
+        </div>
+        <div>
+          <ul>
+            <Reminder/>
+            <Reminder/>
+          </ul>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
