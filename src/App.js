@@ -2,31 +2,27 @@ import React from 'react';
 import './App.css';
 import Reminder from './Reminder';
 
+let count = 0;
+
 class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      todos: [{"key": new Date().getTime(), "description":"uno", "done":false}],
+      todos: []
     };
   }
 
   addTodo() {
-    console.log("adding todo")
+    // Make a copy of the list
     const todos = [...this.state.todos];
-    todos.unshift({"key": new Date().getTime(), "description":null, "done":false})
-    console.log("setting new state " + JSON.stringify(todos))
+    // Add to beginning of list
+    todos.unshift({"id": count++,
+      "placeholder":"Enter a reminder " + count,
+      "description":"",
+      "done":false})
+    // Set the state will cause the list to be rendered
     this.setState({todos:todos});
-  }
-
-  debugMe() {
-    console.log(this.state.todos);
-  }
-
-  renderTodo(todo) {
-    console.log("render to do " + JSON.stringify(todo))
-    return (
-      <Reminder value={todo} />
-    );
   }
 
   render() {
@@ -39,8 +35,9 @@ class App extends React.Component {
         </div>
         <div>
           <ul>
-          <Reminder value={{"key": 34, "description":"hmm", "done":false}} />
-          {this.renderTodo(this.state.todos[0])}
+            {this.state.todos.map(item => (
+              <Reminder key={item.id} value={item} />
+            ))}
           </ul>
         </div>
       </div>
