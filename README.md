@@ -48,3 +48,8 @@ html and css file for how the web page will look.
 Render the same html as the mockup in the react application.
 
 The Reminder component does not have any smarts and always renders "buy milk".
+
+## step 04 add todo
+Clicking the _New Reminder_ button results in an empty reminder added to the 
+beginning of the list of reminders
+

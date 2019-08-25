@@ -2,11 +2,19 @@ import React from 'react';
 import './Reminder.css';
 
 class Reminder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: props.value.id,
+      description: props.value.description,
+      placeholder: props.value.placeholder,
+      done: props.value.done
+    };
+  }
   render() {
     return (
       <li>
-        <input className="done" type="checkbox" checked></input>
-        <input type="text" value="buy milk"></input>
+        <input type="text" value={this.state.description} placeholder={this.state.placeholder}></input>
         <button>x</button>
       </li>
     );
