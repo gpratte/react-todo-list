@@ -25,6 +25,15 @@ class App extends React.Component {
     this.setState({todos:todos});
   }
 
+  removeTodo() {
+    // Make a copy of the list
+    const todos = [...this.state.todos];
+    // Remove from list
+    // TODO
+    // Set the state will cause the list to be rendered
+    this.setState({todos:todos});
+  }
+
   render() {
     return (
       <div>
