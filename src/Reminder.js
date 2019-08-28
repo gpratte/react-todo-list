@@ -11,11 +11,16 @@ class Reminder extends React.Component {
       done: props.value.done
     };
   }
+
+  delete = () => {
+    this.props.removeTodo(this.state.id);
+  }
+
   render() {
     return (
       <li>
         <input type="text" value={this.state.description} placeholder={this.state.placeholder}></input>
-        <button>x</button>
+        <button onClick={this.delete}>x</button>
       </li>
     );
   }

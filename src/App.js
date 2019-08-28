@@ -6,32 +6,30 @@ let count = 0;
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: []
-    };
-  }
+  state = {
+    todos: []
+  };
+
 
   addTodo() {
     // Make a copy of the list
     const todos = [...this.state.todos];
     // Add to beginning of list
-    todos.unshift({"id": count++,
-      "placeholder":"Enter a reminder " + count,
-      "description":"",
-      "done":false})
+    todos.unshift({
+      "id": ++count,
+      "placeholder": "Enter a reminder " + count,
+      "description": "",
+      "done": false
+    })
     // Set the state will cause the list to be rendered
-    this.setState({todos:todos});
+    this.setState({todos: todos});
   }
 
-  removeTodo() {
-    // Make a copy of the list
-    const todos = [...this.state.todos];
-    // Remove from list
-    // TODO
+  removeTodo = (id) => {
+    // Remove the entry with the id from the list
+    const todos = this.state.todos.filter( todo => todo.id !== id)
     // Set the state will cause the list to be rendered
-    this.setState({todos:todos});
+    this.setState({todos: todos});
   }
 
   render() {
@@ -45,7 +43,7 @@ class App extends React.Component {
         <div>
           <ul>
             {this.state.todos.map(item => (
-              <Reminder key={item.id} value={item} />
+              <Reminder key={item.id} value={item} removeTodo={this.removeTodo}/>
             ))}
           </ul>
         </div>
