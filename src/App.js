@@ -7,7 +7,8 @@ let count = 0;
 class App extends React.Component {
 
   state = {
-    todos: []
+    todos: [],
+    concatinated: ""
   };
 
   addTodo() {
@@ -21,14 +22,14 @@ class App extends React.Component {
       "done": false
     })
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos});
+    this.setState({todos: todos, concatinated: this.concatinate(todos)});
   }
 
   removeTodo = (id) => {
     // Remove the entry with the id from the list
     const todos = this.state.todos.filter( todo => todo.id !== id)
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos});
+    this.setState({todos: todos, concatinated: this.concatinate(todos)});
   }
 
   updateText = (id, text) => {
@@ -41,7 +42,7 @@ class App extends React.Component {
       return todo;
     })
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos});
+    this.setState({todos: todos, concatinated: this.concatinate(todos)});
   }
 
   render() {
@@ -61,8 +62,21 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
+        <div>
+          All reminders: {this.state.concatinated}
+        </div>
       </div>
     );
+  }
+
+  concatinate = (todos) => {
+    let allText = "";
+    todos.forEach( (todo) => {
+      if (todo.description.length > 0) {
+        allText += todo.description + ' ';
+      }
+    })
+    return allText;
   }
 
 }

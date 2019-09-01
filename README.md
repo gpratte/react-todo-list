@@ -61,3 +61,14 @@ To make thing easier to understand numbered the reminders by using a placeholder
 ## step 06 update text
 Wired up the onChange event from the input field so that the correct reminder
 in the state array is updated and then setState renders the text. 
+
+## step 07 concatinate text
+Added state and a field at the bottom of the page that concatinates all the reminders. 
+
+This shows that when manipulating the list of reminders that the state gets updated 
+which also updates other fields in the UI.
+
+Hence react is Model/View/Controller (MVC) where
+* react state is the model
+* react components are the views
+* events are the controller
