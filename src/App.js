@@ -73,7 +73,7 @@ class App extends React.Component {
     let allText = "";
     todos.forEach( (todo) => {
       if (todo.description.length > 0) {
-        allText += todo.description + ' ';
+        allText += '"' + todo.description + '"';
       }
     })
     return allText;
