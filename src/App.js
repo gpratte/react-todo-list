@@ -10,7 +10,6 @@ class App extends React.Component {
     todos: []
   };
 
-
   addTodo() {
     // Make a copy of the list
     const todos = [...this.state.todos];
@@ -32,6 +31,19 @@ class App extends React.Component {
     this.setState({todos: todos});
   }
 
+  updateText = (id, text) => {
+    // Copy the list
+    const todos = this.state.todos.map( todo => {
+      if (todo.id === id) {
+        // Update the text
+        todo.description = text;
+      }
+      return todo;
+    })
+    // Set the state will cause the list to be rendered
+    this.setState({todos: todos});
+  }
+
   render() {
     return (
       <div>
@@ -43,13 +55,16 @@ class App extends React.Component {
         <div>
           <ul>
             {this.state.todos.map(item => (
-              <Reminder key={item.id} value={item} removeTodo={this.removeTodo}/>
+              <Reminder key={item.id} value={item}
+                        removeTodo={this.removeTodo}
+                        updateText={this.updateText}/>
             ))}
           </ul>
         </div>
       </div>
     );
   }
+
 }
 
 export default App;
