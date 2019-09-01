@@ -57,3 +57,7 @@ beginning of the list of reminders
 Clicking the delete button results in the reminder being removed from the list. 
 
 To make thing easier to understand numbered the reminders by using a placeholder with the id.
+
+## step 06 update text
+Wired up the onChange event from the input field so that the correct reminder
+in the state array is updated and then setState renders the text. 
