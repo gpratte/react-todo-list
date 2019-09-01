@@ -53,3 +53,7 @@ The Reminder component does not have any smarts and always renders "buy milk".
 Clicking the _New Reminder_ button results in an empty reminder added to the 
 beginning of the list of reminders
 
+## step 05 remove todo
+Clicking the delete button results in the reminder being removed from the list. 
+
+To make thing easier to understand numbered the reminders by using a placeholder with the id.
