@@ -69,7 +69,7 @@ class App extends React.Component {
 
   toggleHideDone = () => {
     this.setState({todos: this.state.todos,
-      concatinated: this.state.concatinated,
+      concatinated: this.concatinate(this.state.todos, !this.state.hideDone),
       hideDone: !this.state.hideDone});
   }
 
@@ -105,11 +105,23 @@ class App extends React.Component {
     );
   }
 
-  concatinate = (todos) => {
+  concatinate = (todos, hideDone) => {
+    // If hideDone is passed as a parameter use it otherwise
+    // use the value from state.
+    if (hideDone === undefined) {
+      hideDone = this.state.hideDone;
+    }
+
     let allText = "";
     todos.forEach( (todo) => {
       if (todo.description.length > 0) {
-        allText += '"' + todo.description + '"';
+        if (todo.done) {
+          if (!hideDone) {
+            allText += '"' + todo.description + '"';
+          }
+        } else {
+          allText += '"' + todo.description + '"';
+        }
       }
     })
     return allText;
