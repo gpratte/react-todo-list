@@ -11,9 +11,18 @@ class Reminder extends React.Component {
     this.props.updateText(this.props.value.id, event.target.value);
   }
 
+  toggleDone = (event) => {
+    this.props.toggleDone(this.props.value.id);
+  }
+
   render() {
     return (
       <li>
+        <input
+          name="done"
+          type="checkbox"
+          checked={this.props.done}
+          onChange={this.toggleDone} />
         <input
           type="text"
           value={this.props.value.description}

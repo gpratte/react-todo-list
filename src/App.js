@@ -17,7 +17,7 @@ class App extends React.Component {
     // Add to beginning of list
     todos.unshift({
       "id": ++count,
-      "placeholder": "Enter a reminder " + count,
+      "placeholder": "Enter a reminder",
       "description": "",
       "done": false
     })
@@ -45,6 +45,19 @@ class App extends React.Component {
     this.setState({todos: todos, concatinated: this.concatinate(todos)});
   }
 
+  toggleDone = (id) => {
+    // Copy the list
+    const todos = this.state.todos.map( todo => {
+      if (todo.id === id) {
+        // Update the text
+        todo.done = !todo.done;
+      }
+      return todo;
+    })
+    // Set the state will cause the list to be rendered
+    this.setState({todos: todos, concatinated: this.concatinate(todos)});
+  }
+
   render() {
     return (
       <div>
@@ -56,9 +69,11 @@ class App extends React.Component {
         <div>
           <ul>
             {this.state.todos.map(item => (
-              <Reminder key={item.id} value={item}
+              <Reminder key={item.id}
+                        value={item}
                         removeTodo={this.removeTodo}
-                        updateText={this.updateText}/>
+                        updateText={this.updateText}
+                        toggleDone={this.toggleDone}/>
             ))}
           </ul>
         </div>

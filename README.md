@@ -72,3 +72,6 @@ Hence react is Model/View/Controller (MVC) where
 * react state is the model
 * react components are the views
 * events are the controller
+
+## step 08 mark done
+Wired up a checkbox to signify that the reminder (a.k.a. todo) has been done.
