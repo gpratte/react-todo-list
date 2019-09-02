@@ -6,6 +6,6 @@ ul {
   padding: 0px;
 }
 .header-item {
-  float: right;
+  margin-left: 10px;
 }
 
