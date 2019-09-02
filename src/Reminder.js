@@ -21,7 +21,7 @@ class Reminder extends React.Component {
         <input
           name="done"
           type="checkbox"
-          checked={this.props.done}
+          checked={this.props.value.done}
           onChange={this.toggleDone} />
         <input
           type="text"

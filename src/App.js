@@ -8,7 +8,8 @@ class App extends React.Component {
 
   state = {
     todos: [],
-    concatinated: ""
+    concatinated: "",
+    hideDone: false
   };
 
   addTodo() {
@@ -22,14 +23,18 @@ class App extends React.Component {
       "done": false
     })
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos, concatinated: this.concatinate(todos)});
+    this.setState({todos: todos,
+      concatinated: this.concatinate(todos),
+      hideDone: this.state.hideDone});
   }
 
   removeTodo = (id) => {
     // Remove the entry with the id from the list
     const todos = this.state.todos.filter( todo => todo.id !== id)
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos, concatinated: this.concatinate(todos)});
+    this.setState({todos: todos,
+      concatinated: this.concatinate(todos),
+      hideDone: this.state.hideDone});
   }
 
   updateText = (id, text) => {
@@ -42,7 +47,9 @@ class App extends React.Component {
       return todo;
     })
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos, concatinated: this.concatinate(todos)});
+    this.setState({todos: todos,
+      concatinated: this.concatinate(todos),
+      hideDone: this.state.hideDone});
   }
 
   toggleDone = (id) => {
@@ -55,7 +62,26 @@ class App extends React.Component {
       return todo;
     })
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos, concatinated: this.concatinate(todos)});
+    this.setState({todos: todos,
+      concatinated: this.concatinate(todos),
+      hideDone: this.state.hideDone});
+  }
+
+  toggleHideDone = () => {
+    this.setState({todos: this.state.todos,
+      concatinated: this.state.concatinated,
+      hideDone: !this.state.hideDone});
+  }
+
+  renderReminder = (todo) => {
+    if (this.state.hideDone && todo.done) {
+      return null;
+    }
+    return <Reminder key={todo.id}
+              value={todo}
+              removeTodo={this.removeTodo}
+              updateText={this.updateText}
+              toggleDone={this.toggleDone}/>
   }
 
   render() {
@@ -64,17 +90,12 @@ class App extends React.Component {
         <div className={"header"}>
           <h1>Reminders</h1>
           <button className="header-item" onClick={() => this.addTodo()}>New Reminder</button>
-          <button className="header-item">Hide Done</button>
+          <button className="header-item" onClick={() => this.toggleHideDone()}>
+            {this.state.hideDone ? "Show Done" : "Hide Done"}</button>
         </div>
         <div>
           <ul>
-            {this.state.todos.map(item => (
-              <Reminder key={item.id}
-                        value={item}
-                        removeTodo={this.removeTodo}
-                        updateText={this.updateText}
-                        toggleDone={this.toggleDone}/>
-            ))}
+            {this.state.todos.map(todo => this.renderReminder(todo))}
           </ul>
         </div>
         <div>

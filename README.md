@@ -75,3 +75,10 @@ Hence react is Model/View/Controller (MVC) where
 
 ## step 08 mark done
 Wired up a checkbox to signify that the reminder (a.k.a. todo) has been done.
+
+## step 09 hide done
+Hide the reminders that are marked as done when the Hide Done button is pressed. 
+Conversely show the reminders that are marked as done when the Show Done button is pressed.
+
+Toggle the text to/from Hide Done/Show Done.
+ 
