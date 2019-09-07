@@ -13,7 +13,7 @@ class App extends React.Component {
     hideDone: false
   };
 
-  addTodo() {
+  addTodo = () => {
     // Make a copy of the list
     const todos = [...this.state.todos];
     // Add to beginning of list
@@ -87,7 +87,7 @@ class App extends React.Component {
       <div>
         <div className={"header"}>
           <h1>Reminders</h1>
-          <button className="header-item" onClick={() => this.addTodo()}>New Reminder</button>
+          <button className="header-item" onClick={this.addTodo}>New Reminder</button>
           <button className="header-item" onClick={() => this.toggleHideDone()}>
             {this.state.hideDone ? "Show Done" : "Hide Done"}</button>
         </div>
