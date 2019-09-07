@@ -114,10 +114,10 @@ class App extends React.Component {
       if (todo.description.length > 0) {
         if (todo.done) {
           if (!hideDone) {
-            allText += '"' + todo.description + '"';
+            allText += `"${todo.description}"`;
           }
         } else {
-          allText += '"' + todo.description + '"';
+          allText += `"${todo.description}"`;
         }
       }
     });
