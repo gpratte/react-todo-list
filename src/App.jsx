@@ -25,8 +25,7 @@ class App extends React.Component {
     })
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+      concatinated: this.concatinate(todos)});
   }
 
   removeTodo = (id) => {
@@ -34,8 +33,7 @@ class App extends React.Component {
     const todos = this.state.todos.filter( todo => todo.id !== id)
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+      concatinated: this.concatinate(todos)});
   }
 
   updateText = (id, text) => {
@@ -50,29 +48,27 @@ class App extends React.Component {
 
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+      concatinated: this.concatinate(todos)});
   }
 
   toggleDone = (id) => {
     // Copy the list
     const todos = map(this.state.todos, (todo) => {
       if (todo.id === id) {
-        // Update the text
+        // Update done
         todo.done = !todo.done;
       }
       return todo;
     });
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+    this.setState({todos: todos});
   }
 
   toggleHideDone = () => {
-    this.setState({todos: this.state.todos,
-      concatinated: this.concatinate(this.state.todos, !this.state.hideDone),
-      hideDone: !this.state.hideDone});
+    const {todos, hideDone} = this.state;
+    this.setState({todos: todos,
+      concatinated: this.concatinate(todos, !hideDone),
+      hideDone: !hideDone});
   }
 
   renderReminder = (todo) => {

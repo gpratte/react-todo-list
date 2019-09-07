@@ -16,17 +16,18 @@ class Reminder extends React.Component {
   }
 
   render() {
+    const {done, description, placeholder} = this.props.value;
     return (
       <li>
         <input
           name="done"
           type="checkbox"
-          checked={this.props.value.done}
+          checked={done}
           onChange={this.toggleDone} />
         <input
           type="text"
-          value={this.props.value.description}
-          placeholder={this.props.value.placeholder}
+          value={description}
+          placeholder={placeholder}
           onChange={this.textChange}>
         </input>
         <button onClick={this.delete}>x</button>
