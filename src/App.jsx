@@ -10,7 +10,7 @@ class App extends React.Component {
 
   state = {
     todos: [],
-    concatinated: "",
+    concatenated: "",
     hideDone: false
   };
 
@@ -26,7 +26,7 @@ class App extends React.Component {
     });
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos)});
+      concatenated: this.concatenate(todos)});
   }
 
   removeTodo = (id) => {
@@ -34,7 +34,7 @@ class App extends React.Component {
     const todos = filter( this.state.todos, (todo) => todo.id !== id)
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos)});
+      concatenated: this.concatenate(todos)});
   }
 
   updateText = (id, text) => {
@@ -49,7 +49,7 @@ class App extends React.Component {
 
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos)});
+      concatenated: this.concatenate(todos)});
   }
 
   toggleDone = (id) => {
@@ -67,7 +67,7 @@ class App extends React.Component {
 
   toggleHideDone = () => {
     const {todos, hideDone} = this.state;
-    this.setState({concatinated: this.concatinate(todos, !hideDone),
+    this.setState({concatenated: this.concatenate(todos, !hideDone),
       hideDone: !hideDone});
   }
 
@@ -97,13 +97,13 @@ class App extends React.Component {
           </ul>
         </div>
         <div>
-          All reminders: {this.state.concatinated}
+          All reminders: {this.state.concatenated}
         </div>
       </div>
     );
   }
 
-  concatinate = (todos, hideDone) => {
+  concatenate = (todos, hideDone) => {
     // If hideDone is passed as a parameter use it otherwise use the value from state
     if (hideDone === undefined) {
       hideDone = this.state.hideDone;
