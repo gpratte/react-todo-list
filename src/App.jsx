@@ -19,11 +19,11 @@ class App extends React.Component {
     const todos = [...this.state.todos];
     // Add to beginning of list
     todos.unshift({
-      "id": ++this.count,
-      "placeholder": "Enter a reminder",
-      "description": "",
-      "done": false
-    })
+      id: ++this.count,
+      placeholder: "Enter a reminder",
+      description: "",
+      done: false
+    });
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
       concatinated: this.concatinate(todos)});
@@ -67,8 +67,7 @@ class App extends React.Component {
 
   toggleHideDone = () => {
     const {todos, hideDone} = this.state;
-    this.setState({todos: todos,
-      concatinated: this.concatinate(todos, !hideDone),
+    this.setState({concatinated: this.concatinate(todos, !hideDone),
       hideDone: !hideDone});
   }
 
