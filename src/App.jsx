@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Reminder from './Reminder';
+import { map, forEach } from 'lodash';
 
 let count = 0;
 
@@ -39,13 +40,14 @@ class App extends React.Component {
 
   updateText = (id, text) => {
     // Copy the list
-    const todos = this.state.todos.map( todo => {
+    const todos = map(this.state.todos, (todo) => {
       if (todo.id === id) {
         // Update the text
         todo.description = text;
       }
       return todo;
-    })
+    });
+
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
       concatinated: this.concatinate(todos),
@@ -54,13 +56,13 @@ class App extends React.Component {
 
   toggleDone = (id) => {
     // Copy the list
-    const todos = this.state.todos.map( todo => {
+    const todos = map(this.state.todos, (todo) => {
       if (todo.id === id) {
         // Update the text
         todo.done = !todo.done;
       }
       return todo;
-    })
+    });
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
       concatinated: this.concatinate(todos),
@@ -106,14 +108,13 @@ class App extends React.Component {
   }
 
   concatinate = (todos, hideDone) => {
-    // If hideDone is passed as a parameter use it otherwise
-    // use the value from state.
+    // If hideDone is passed as a parameter use it otherwise use the value from state
     if (hideDone === undefined) {
       hideDone = this.state.hideDone;
     }
 
     let allText = "";
-    todos.forEach( (todo) => {
+    forEach(todos, (todo) => {
       if (todo.description.length > 0) {
         if (todo.done) {
           if (!hideDone) {
@@ -123,7 +124,7 @@ class App extends React.Component {
           allText += '"' + todo.description + '"';
         }
       }
-    })
+    });
     return allText;
   }
 
