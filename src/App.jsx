@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Reminder from './Reminder';
-import { map, forEach } from 'lodash';
+import { map, forEach, filter } from 'lodash';
 
 let count = 0;
 
@@ -30,7 +30,7 @@ class App extends React.Component {
 
   removeTodo = (id) => {
     // Remove the entry with the id from the list
-    const todos = this.state.todos.filter( todo => todo.id !== id)
+    const todos = filter( this.state.todos, (todo) => todo.id !== id)
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
       concatinated: this.concatinate(todos)});
@@ -93,7 +93,7 @@ class App extends React.Component {
         </div>
         <div>
           <ul>
-            {this.state.todos.map(todo => this.renderReminder(todo))}
+            {map(this.state.todos, todo => this.renderReminder(todo))}
           </ul>
         </div>
         <div>
