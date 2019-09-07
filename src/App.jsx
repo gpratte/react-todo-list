@@ -3,9 +3,10 @@ import './App.css';
 import Reminder from './Reminder';
 import { map, forEach, filter } from 'lodash';
 
-let count = 0;
 
 class App extends React.Component {
+
+  count = 0;
 
   state = {
     todos: [],
@@ -18,7 +19,7 @@ class App extends React.Component {
     const todos = [...this.state.todos];
     // Add to beginning of list
     todos.unshift({
-      "id": ++count,
+      "id": ++this.count,
       "placeholder": "Enter a reminder",
       "description": "",
       "done": false
