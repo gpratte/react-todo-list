@@ -1,76 +1,75 @@
 import React from 'react';
 import './App.css';
 import Reminder from './Reminder';
+import { map, forEach, filter } from 'lodash';
 
-let count = 0;
 
 class App extends React.Component {
 
   state = {
+    count: 0,
     todos: [],
-    concatinated: "",
+    concatenated: "",
     hideDone: false
   };
 
-  addTodo() {
+  addTodo = () => {
     // Make a copy of the list
+    const count = this.state.count + 1;
     const todos = [...this.state.todos];
     // Add to beginning of list
     todos.unshift({
-      "id": ++count,
-      "placeholder": "Enter a reminder",
-      "description": "",
-      "done": false
-    })
+      id: count,
+      placeholder: "Enter a reminder",
+      description: "",
+      done: false
+    });
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+    this.setState({count: count,
+      todos: todos,
+      concatenated: this.concatenate(todos)});
   }
 
   removeTodo = (id) => {
     // Remove the entry with the id from the list
-    const todos = this.state.todos.filter( todo => todo.id !== id)
+    const todos = filter( this.state.todos, (todo) => todo.id !== id)
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+      concatenated: this.concatenate(todos)});
   }
 
   updateText = (id, text) => {
     // Copy the list
-    const todos = this.state.todos.map( todo => {
+    const todos = map(this.state.todos, (todo) => {
       if (todo.id === id) {
         // Update the text
         todo.description = text;
       }
       return todo;
-    })
+    });
+
     // Set the state will cause the list to be rendered
     this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+      concatenated: this.concatenate(todos)});
   }
 
   toggleDone = (id) => {
     // Copy the list
-    const todos = this.state.todos.map( todo => {
+    const todos = map(this.state.todos, (todo) => {
       if (todo.id === id) {
-        // Update the text
+        // Update done
         todo.done = !todo.done;
       }
       return todo;
-    })
+    });
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos,
-      concatinated: this.concatinate(todos),
-      hideDone: this.state.hideDone});
+    this.setState({todos: todos});
   }
 
   toggleHideDone = () => {
-    this.setState({todos: this.state.todos,
-      concatinated: this.concatinate(this.state.todos, !this.state.hideDone),
-      hideDone: !this.state.hideDone});
+    const {todos, hideDone} = this.state;
+    this.setState({concatenated: this.concatenate(todos, !hideDone),
+      hideDone: !hideDone});
   }
 
   renderReminder = (todo) => {
@@ -89,41 +88,40 @@ class App extends React.Component {
       <div>
         <div className={"header"}>
           <h1>Reminders</h1>
-          <button className="header-item" onClick={() => this.addTodo()}>New Reminder</button>
-          <button className="header-item" onClick={() => this.toggleHideDone()}>
+          <button className="header-item" onClick={this.addTodo}>New Reminder</button>
+          <button className="header-item" onClick={this.toggleHideDone}>
             {this.state.hideDone ? "Show Done" : "Hide Done"}</button>
         </div>
         <div>
           <ul>
-            {this.state.todos.map(todo => this.renderReminder(todo))}
+            {map(this.state.todos, todo => this.renderReminder(todo))}
           </ul>
         </div>
         <div>
-          All reminders: {this.state.concatinated}
+          All reminders: {this.state.concatenated}
         </div>
       </div>
     );
   }
 
-  concatinate = (todos, hideDone) => {
-    // If hideDone is passed as a parameter use it otherwise
-    // use the value from state.
+  concatenate = (todos, hideDone) => {
+    // If hideDone is passed as a parameter use it otherwise use the value from state
     if (hideDone === undefined) {
       hideDone = this.state.hideDone;
     }
 
     let allText = "";
-    todos.forEach( (todo) => {
+    forEach(todos, (todo) => {
       if (todo.description.length > 0) {
         if (todo.done) {
           if (!hideDone) {
-            allText += '"' + todo.description + '"';
+            allText += `"${todo.description}"`;
           }
         } else {
-          allText += '"' + todo.description + '"';
+          allText += `"${todo.description}"`;
         }
       }
-    })
+    });
     return allText;
   }
 
