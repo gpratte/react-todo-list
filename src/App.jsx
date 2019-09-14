@@ -89,7 +89,7 @@ class App extends React.Component {
         <div className={"header"}>
           <h1>Reminders</h1>
           <button className="header-item" onClick={this.addTodo}>New Reminder</button>
-          <button className="header-item" onClick={() => this.toggleHideDone()}>
+          <button className="header-item" onClick={this.toggleHideDone}>
             {this.state.hideDone ? "Show Done" : "Hide Done"}</button>
         </div>
         <div>
