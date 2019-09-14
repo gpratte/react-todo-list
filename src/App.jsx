@@ -6,9 +6,8 @@ import { map, forEach, filter } from 'lodash';
 
 class App extends React.Component {
 
-  count = 0;
-
   state = {
+    count: 0,
     todos: [],
     concatenated: "",
     hideDone: false
@@ -16,16 +15,18 @@ class App extends React.Component {
 
   addTodo = () => {
     // Make a copy of the list
+    const count = this.state.count + 1;
     const todos = [...this.state.todos];
     // Add to beginning of list
     todos.unshift({
-      id: ++this.count,
+      id: count,
       placeholder: "Enter a reminder",
       description: "",
       done: false
     });
     // Set the state will cause the list to be rendered
-    this.setState({todos: todos,
+    this.setState({count: count,
+      todos: todos,
       concatenated: this.concatenate(todos)});
   }
 
