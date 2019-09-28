@@ -1,0 +1,31 @@
+
+General:
+- Use a linter
+- Use .jsx extension for components. Syntactic sugar.
+- Would recommend using something like lodash for better performance for map, filter, etc.
+- Consistently use arrow methods vs regular ol' functions. When in doubt, you should probably use an arrow: https://medium.com/tfogo/advantages-and-pitfalls-of-arrow-functions-a16f0835799e
+- Consider using destructuring syntax to avoid constantly referencing state or props, e.g. const { foo, bar, baz } = this.state;
+- A common pattern is to bind all of the component methods in the constructor, for consistent "this" value. Something like this.myFunction = this.myFunction.bind(this); See https://www.freecodecamp.org/news/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb/
+
+App.js
+- Count should probably be in the component state, or redux. Could also use some sort of UUID generation.
+- minor nit: unless there are things like dashes/dots, quotes are unnecessary for object keys in JS
+- When using multiline jsx (line 80), wrap in parentheses
+- Line 98 - try to avoid creating new functions in render, this is bad for scalability as each render will create new functions that need to be garbage collected.
+
+Some recommend next steps:
+- Make sure you understand the React lifecycle. For example, if you wanted to make an API call in App.js, where might you put it?
+- Get familiar with Enzyme for unit testing. It's so, so, so much easier than the ReactTestUtils or whatever.
+- Learn Redux and how it interacts with React.
+
+Some nits:
+allText += '"' + todo.description + '"';
+  With ES2015 you could use template literal instead:
+  allText += `"${todo.description}"`;
+s/concatinate/concatenate/g
+Also, might consider removing concatinate from state and instead deriving it on each render. It should be performant, as it already has to be re-derived on each todos state change anyway.
+If you get into Redux, there are additional libraries like reselect that help compute derived values with little code but much control.
+You might look into using prop-types in order to specify the props (and optionally their types) that your components support.
+I think the component breakdown is pretty good.
+You might consider adding unit tests with jest (and possibly enzyme, but no rush there). To check behaviors like rendering, functions/actions.
+If you want to keep going explore jest and Redux next. There’s also always more es6/ES2015+ out there, but a lot of that may make sense to pick up in the context of React+Redux rather than as a singular focus.
