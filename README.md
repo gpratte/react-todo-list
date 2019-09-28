@@ -82,3 +82,16 @@ Conversely show the reminders that are marked as done when the Show Done button 
 
 Toggle the text to/from Hide Done/Show Done.
  
+## step 10 code review refactor
+Refactored the code from the code review comments
+* Use .jsx extension for components
+* Use lodash for better performance for map, filter, etc.
+* Consider using destructuring syntax to avoid constantly referencing state or props, e.g. const { foo, bar, baz } = this.state
+* Use lodash for better performance for map, filter, etc.
+* Consistently use arrow methods vs regular old functions
+* Count should probably be in the component state
+* Unless there are things like dashes/dots, quotes are unnecessary for object keys
+* With ES2015 you could use template literal for text substitution
+* Spelled concatenate wrong
+* Count should probably be in the component state
+* Avoid creating new functions in render, this is bad for scalability as each render will create new functions that need to be garbage collected
